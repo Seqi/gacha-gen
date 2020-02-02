@@ -53,4 +53,27 @@
 				Hello <div id="genre" class="placeholder">world!</div>
 		</div>
 	</body>
+	<script>
+		let genre = document.getElementById('genre')
+		
+		let opts = ['world!', 'dummies!', 'bozos!']
+
+		let shuffle = (action) => {
+			let count = 0
+			let iterations = 20
+
+			let interval = setInterval(() => {
+				action()
+				
+				if (count++ >= iterations) {
+					clearInterval(interval)
+				}
+			}, 100)
+		}
+
+		shuffle(() => {
+			let random = opts[Math.floor(Math.random() * opts.length)]
+			genre.innerHTML = random
+		})
+	</script>
 </html>
