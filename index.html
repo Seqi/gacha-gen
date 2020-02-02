@@ -47,6 +47,8 @@
 				border: 0;
 				font: inherit;
 				font-size: 1rem;
+
+				transition: opacity ease-in 1s;
 			}
 			 
 			@media (max-width: 900px) {
@@ -90,6 +92,7 @@
 		}
 
 		let generate = async () => {
+			button.style.opacity = 0
 			button.style.visibility = 'hidden'
 
 			await shuffle(() => {
@@ -97,6 +100,7 @@
 				genre.innerHTML = random
 			})
 
+			button.style.opacity = 1
 			button.style.visibility = 'visible'
 		}
 
