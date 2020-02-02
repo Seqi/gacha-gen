@@ -21,12 +21,12 @@
 				color: #1E1D29;
 				text-align: center;
 			}
+
 			.center {
 				position: absolute;
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-				width: 100%;
 			}
 
 			 .placeholder {
@@ -34,7 +34,20 @@
 				 min-width: 200px;
 				 border-bottom: 5px dotted #FE5F55;
 				 color: #FE5F55
-			 }
+			}
+
+			.center button {
+				display: block;
+				background-color: #FE5F55;
+				width: 100%;
+				margin-top: 16px;
+				color: #F7FCFF;
+				padding: 8px 0;
+				border-radius: 5px;
+				border: 0;
+				font: inherit;
+				font-size: 1rem;
+			}
 			 
 			@media (max-width: 900px) {
 				body {
@@ -50,30 +63,43 @@
 	<body>
 		<noscript> You need to enable JavaScript to run this app. </noscript>
 		<div class="center">
-				Hello <div id="genre" class="placeholder">world!</div>
+			Hello <div id="genre" class="placeholder">world!</div> aa
+			<button onclick="generate()">Regenerate</button>
 		</div>
 	</body>
 	<script>
+		let button = document.getElementsByTagName('button')[0]
 		let genre = document.getElementById('genre')
 		
 		let opts = ['world!', 'dummies!', 'bozos!']
 
 		let shuffle = (action) => {
-			let count = 0
-			let iterations = 20
-
-			let interval = setInterval(() => {
-				action()
-				
-				if (count++ >= iterations) {
-					clearInterval(interval)
-				}
-			}, 100)
+			return new Promise((resolve) => {
+				let count = 0
+				let iterations = 20
+	
+				let interval = setInterval(() => {
+					action()
+					
+					if (count++ >= iterations) {
+						clearInterval(interval)
+						resolve()
+					}
+				}, 100)
+			})
 		}
 
-		shuffle(() => {
-			let random = opts[Math.floor(Math.random() * opts.length)]
-			genre.innerHTML = random
-		})
+		let generate = async () => {
+			button.style.visibility = 'hidden'
+
+			await shuffle(() => {
+				let random = opts[Math.floor(Math.random() * opts.length)]
+				genre.innerHTML = random
+			})
+
+			button.style.visibility = 'visible'
+		}
+
+		generate()
 	</script>
 </html>
