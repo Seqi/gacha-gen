@@ -65,7 +65,7 @@
 	<body>
 		<noscript> You need to enable JavaScript to run this app. </noscript>
 		<div class="center">
-			Hello <div id="genre" class="placeholder">world!</div> aa
+			Hello <div id="genre" class="placeholder">world!</div>
 			<button onclick="generate()">Regenerate</button>
 		</div>
 	</body>
@@ -91,12 +91,23 @@
 			})
 		}
 
+		let getNextUniqueValue = (values, val) => {
+			let currIndex = values.indexOf(val)
+
+			let newIndex
+			do {
+				newIndex = Math.floor(Math.random() * values.length)
+			} while (newIndex === currIndex)
+
+			return values[newIndex]
+		}
+
 		let generate = async () => {
 			button.style.opacity = 0
 			button.style.visibility = 'hidden'
 
 			await shuffle(() => {
-				let random = opts[Math.floor(Math.random() * opts.length)]
+				let random = getNextUniqueValue(opts, genre.innerHTML)
 				genre.innerHTML = random
 			})
 
