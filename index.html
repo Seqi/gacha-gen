@@ -32,7 +32,7 @@
 
 			 .center > div {
 				 display: inline-block;
-				 min-width: 200px;
+				 width: 500px;
 				 border-bottom: 5px dotted #FE5F55;
 				 color: #FE5F55
 			}
@@ -41,24 +41,25 @@
 				display: block;
 				background-color: #FE5F55;
 				width: 100%;
-				margin-top: 16px;
+				margin-top: 24px;
 				color: #F7FCFF;
 				padding: 8px 0;
 				border-radius: 5px;
 				border: 0;
 				font: inherit;
-				font-size: 1rem;
+				font-size: 1.5rem;
 
 				transition: opacity ease-in 1s;
 			}
 			 
 			@media (max-width: 900px) {
 				body {
-					font-size: 2rem;
+					font-size: 3rem;
 				}
 
 				.center > div {
-					min-width: 50px;
+					width: 400px;
+					min-width: 200px;
 				}
 			}
 		</style>
@@ -77,6 +78,7 @@
 			<div id="fetish"></div> 
 			who call you
 			<div id="title"></div>
+			
 			<button onclick="generate()">Regenerate</button>
 		</div>
 	</body>
