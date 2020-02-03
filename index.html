@@ -27,9 +27,10 @@
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
+				width: 80%;
 			}
 
-			 .placeholder {
+			 .center > div {
 				 display: inline-block;
 				 min-width: 200px;
 				 border-bottom: 5px dotted #FE5F55;
@@ -56,25 +57,85 @@
 					font-size: 2rem;
 				}
 
-				.placeholder {
+				.center > div {
 					min-width: 50px;
 				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<noscript> You need to enable JavaScript to run this app. </noscript>
 		<div class="center">
-			Hello <div id="genre" class="placeholder">world!</div>
+			A
+			<div id="genre"></div>
+			game about 
+			<div id="inanimate"></div> 
+			but they're 
+			<div id="people"></div>
+			with 
+			<div id="fetish"></div> 
+			who call you
+			<div id="title"></div>
 			<button onclick="generate()">Regenerate</button>
 		</div>
 	</body>
+
 	<script>
 		let button = document.getElementsByTagName('button')[0]
-		let genre = document.getElementById('genre')
-		
-		let opts = ['world!', 'dummies!', 'bozos!']
 
+		let options = [
+			{
+				id: 'genre',
+				values: [
+					'point & click',
+					'MOBA',
+					'tower defense',
+					'city builder',
+					'strategy'
+				]
+			},
+			{
+				id: 'inanimate',
+				values: [
+					'kitchen utensils',
+					'cars',
+					'guns',
+					'war crimes',
+					'graphics cards',
+					'video games'
+				]
+			},
+			{
+				id: 'people',
+				values: [
+					'girls',
+					'cat girls',
+					'cat boys',
+					'maids',
+					'monster girls',
+				]
+			},
+			{
+				id: 'fetish',
+				values: [
+					'giant tits',
+					'futa cocks',
+					'huge asses',
+					'exposed armpits'
+				]
+			},
+			{
+				id: 'title',
+				values: [
+					'master',
+					'commander',
+					'king',
+					'boss'
+				]
+			},
+		]
+		
 		let shuffle = (action) => {
 			return new Promise((resolve) => {
 				let count = 0
@@ -107,8 +168,10 @@
 			button.style.visibility = 'hidden'
 
 			await shuffle(() => {
-				let random = getNextUniqueValue(opts, genre.innerHTML)
-				genre.innerHTML = random
+				options.forEach(opt => {
+					let el = document.getElementById(opt.id)
+					el.innerHTML = getNextUniqueValue(opt.values, el.innerHTML)
+				})
 			})
 
 			button.style.opacity = 1
