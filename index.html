@@ -59,7 +59,20 @@
 
 				.center > div {
 					width: 400px;
-					min-width: 200px;
+				}
+			}
+
+			@media(max-width: 600px) {
+				body {
+					font-size: 1.8rem;
+				}
+
+				.center {
+					width: 90%;
+				}
+				
+				.center > div {
+					width: 220px;
 				}
 			}
 		</style>
@@ -78,7 +91,7 @@
 			<div id="fetish"></div> 
 			who call you
 			<div id="title"></div>
-			
+
 			<button onclick="generate()">Regenerate</button>
 		</div>
 	</body>
@@ -179,7 +192,7 @@
 			button.style.opacity = 1
 			button.style.visibility = 'visible'
 		}
-
+		
 		generate()
-	</script>
+		</script>
 </html>
